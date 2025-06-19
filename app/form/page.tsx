@@ -86,8 +86,6 @@ export default async function Page() {
             outline: 'none',
             transition: 'border 0.2s'
           }}
-          onFocus={(e) => (e.target.style.border = '1.5px solid #888')}
-          onBlur={(e) => (e.target.style.border = '1px solid #ccc')}
         />
         <button
           type="submit"
