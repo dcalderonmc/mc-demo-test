@@ -1,12 +1,23 @@
+'use server';
 import sql from '@/lib/db';
 
 export default async function Page() {
+  if (!sql) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <h1 style={{ color: '#d9534f' }}>Database connection failed</h1>
+        <p style={{ color: '#666' }}>
+          Please check your database configuration.
+        </p>
+      </div>
+    );
+  }
   async function create(formData: FormData) {
     'use server';
     // Connect to the Neon database
     const comment = formData.get('comment');
     // Insert the comment from the form into the Postgres database
-    await sql`INSERT INTO comments (comment) VALUES (${comment})`;
+    await sql!`INSERT INTO comments (comment) VALUES (${comment})`;
   }
 
   const comments = await sql`SELECT comment FROM comments;`;
@@ -91,8 +102,6 @@ export default async function Page() {
             cursor: 'pointer',
             transition: 'background 0.2s'
           }}
-          onMouseOver={(e) => (e.currentTarget.style.background = '#1d4ed8')}
-          onMouseOut={(e) => (e.currentTarget.style.background = '#2563eb')}
         >
           Submit
         </button>
