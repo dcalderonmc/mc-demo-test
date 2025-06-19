@@ -46,9 +46,10 @@ export default async function Page() {
                 padding: '0.75rem 1rem',
                 marginBottom: '0.5rem',
                 boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-                color: '#222',
+                color: '#222', // Make comment text dark
                 fontSize: '1rem',
-                wordBreak: 'break-word'
+                wordBreak: 'break-word',
+                fontWeight: 500
               }}
             >
               {row.comment}
